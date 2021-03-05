@@ -1,7 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { Link } from "react-router-dom";
@@ -19,13 +17,10 @@ const Cart = () => {
       </Link>
       {booksInCart.length > 0 ? (
         <div>
-          <Table>
-            <TableBody>
-              {booksInCart.map((book) => {
-                return <BookList key={book.id} book={book} added />;
-              })}
-            </TableBody>
-          </Table>
+          {booksInCart.map((book) => {
+            return <BookList key={book.id} book={book} added />;
+          })}
+
           <Button variant="contained" color="primary">
             <Link to="/form">Dalej</Link>
           </Button>

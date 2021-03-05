@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import BookList from "./BookList";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const booksInCart = useSelector((state) => state);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/book?page=1")
@@ -22,17 +22,18 @@ const Books = () => {
     <div className="book__container">
       <Link to="/cart">
         <ShoppingCartIcon />
+        <span>{booksInCart.length}</span>
       </Link>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <Table>
-          <TableBody>
-            {books.map((book) => {
-              return <BookList key={book.id} book={book} />;
-            })}
-          </TableBody>
-        </Table>
+        <div>
+          {books.map((book) => {
+            return (
+              <BookList addedBooks={booksInCart} key={book.id} book={book} />
+            );
+          })}
+        </div>
       )}
     </div>
   );
