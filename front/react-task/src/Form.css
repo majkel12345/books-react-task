@@ -1,0 +1,24 @@
+.MuiContainer-root > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__container {
+  margin: 0 10%;
+  height: 100vh;
+}
+
+.MuiButtonBase-root {
+  margin-bottom: 20px;
+}
+
+.book__img {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.book__img img {
+  width: 70px;
+  height: 100px;
+}

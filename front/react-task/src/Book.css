@@ -1,0 +1,44 @@
+.book__container {
+  text-align: center;
+  margin: 0 10%;
+}
+
+.book__container span {
+  text-decoration: none;
+}
+
+.book_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MuiCard-root {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -8px -5px;
+}
+
+.MuiCardContent-root > h2 {
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #f4f4f4;
+}
+
+.MuiCardContent-root > p {
+  margin-top: 10px;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: -8px -5px black;
+}
+
+.next {
+  display: flex;
+  justify-content: center;
+}
+
+.cart__container {
+  margin: 0 10%;
+}
