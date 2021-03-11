@@ -3,6 +3,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BookList from "./BookList";
+import "./Book.css";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -20,18 +21,18 @@ const Books = () => {
 
   return (
     <div className="book__container">
-      <Link to="/cart">
-        <ShoppingCartIcon />
+      <Link to="/cart" style={{ textDecoration: " none", color: "black" }}>
+        <p>Przejdź do koszyka</p>
+        <ShoppingCartIcon style={{ fontSize: "3rem" }} />
         <span>{booksInCart.length}</span>
       </Link>
+
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div>
+        <div className="book_list">
           {books.map((book) => {
-            return (
-              <BookList addedBooks={booksInCart} key={book.id} book={book} />
-            );
+            return <BookList key={book.id} book={book} />;
           })}
         </div>
       )}
