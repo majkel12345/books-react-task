@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BookList from "./BookList";
-import "./Book.css";
+import Book from "./Book";
+import "../style/Book.css";
 
-const Books = () => {
+const BooksList = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const booksInCart = useSelector((state) => state);
@@ -32,7 +32,7 @@ const Books = () => {
       ) : (
         <div className="book_list">
           {books.map((book) => {
-            return <BookList key={book.id} book={book} />;
+            return <Book key={book.id} book={book} />;
           })}
         </div>
       )}
@@ -40,4 +40,4 @@ const Books = () => {
   );
 };
 
-export default Books;
+export default BooksList;

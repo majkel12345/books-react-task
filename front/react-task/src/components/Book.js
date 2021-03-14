@@ -5,11 +5,11 @@ import CardContent from "@material-ui/core/CardContent";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, addToCart } from "./reducers/cart";
+import { removeFromCart, addToCart } from "../reducers/cart";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 
-const BookList = ({ book, added, toSend }) => {
+const Book = ({ book, added, toSend }) => {
   const dispatch = useDispatch();
   const booksInCart = useSelector((state) => state);
 
@@ -79,4 +79,4 @@ const BookList = ({ book, added, toSend }) => {
   );
 };
 
-export default BookList;
+export default Book;

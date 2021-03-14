@@ -5,11 +5,11 @@ import MaskedInput from "react-text-mask";
 import { useSelector, useDispatch } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
-import "./Form.css";
-import { removeFromCart } from "./reducers/cart";
+import "../style/Form.css";
+import { removeFromCart } from "../reducers/cart";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { Link } from "react-router-dom";
-import BookList from "./BookList";
+import Book from "./Book";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -107,7 +107,7 @@ const Form = () => {
       </Link>
       <div className="book__img">
         {booksInCart.map((book, index) => {
-          return <BookList key={index} book={book} toSend />;
+          return <Book key={index} book={book} toSend />;
         })}
       </div>
       <Container

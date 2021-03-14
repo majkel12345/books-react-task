@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { Link } from "react-router-dom";
-import BookList from "./BookList";
+import Book from "./Book";
 
 const Cart = () => {
   const booksInCart = useSelector((state) => state);
@@ -17,7 +17,7 @@ const Cart = () => {
         <div>
           <div className="book_list">
             {booksInCart.map((book) => {
-              return <BookList key={book.id} book={book} added />;
+              return <Book key={book.id} book={book} added />;
             })}
           </div>
           <div className="next">

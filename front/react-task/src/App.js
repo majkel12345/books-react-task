@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Books from "./Books";
-import Cart from "./Cart";
-import Form from "./Form";
+import BooksList from "./components/BooksList";
+import Cart from "./components/Cart";
+import Form from "./components/Form";
 
 function App() {
   return (
@@ -11,13 +11,16 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Books />
+            <BooksList />
           </Route>
           <Route path="/cart">
             <Cart />
           </Route>
           <Route path="/form">
             <Form />
+          </Route>
+          <Route path="*">
+            <BooksList />
           </Route>
         </Switch>
       </Router>
