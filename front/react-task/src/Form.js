@@ -16,6 +16,7 @@ const Form = () => {
   const [surname, setSurname] = useState("");
   const [city, setCity] = useState("");
   const [code, setCode] = useState();
+
   const booksInCart = useSelector((state) => state);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,28 +57,47 @@ const Form = () => {
     booksInCart.map((book) => dispatch(removeFromCart(book.id)));
   };
 
+  const valid = () => {
+    if (
+      name.length > 3 &&
+      surname.length > 5 &&
+      city !== "" &&
+      booksInCart.length > 0 &&
+      code.length === 6
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/api/order", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        order: order,
-        first_name: name,
-        last_name: surname,
-        city: city,
-        zip_code: code,
-      }),
-    })
-      .then(() => {
-        clearInputs();
-        resetCart();
-        alert("wysłano");
+    if (valid()) {
+      fetch("http://localhost:3001/api/order", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          order: order,
+          first_name: name,
+          last_name: surname,
+          city: city,
+          zip_code: code,
+        }),
       })
-      .then(() => history.push("/"));
+        .then(() => {
+          clearInputs();
+          resetCart();
+          alert("wysłano");
+        })
+        .then(() => history.push("/"))
+        .catch((error) => console.log(error));
+    } else {
+      alert("Sprawdź czy koszyk nie jest pusty i wpisz poprawne dane!");
+    }
   };
 
   return (
@@ -86,8 +106,8 @@ const Form = () => {
         <ArrowBackIcon style={{ fontSize: "3rem" }} />
       </Link>
       <div className="book__img">
-        {booksInCart.map((book) => {
-          return <BookList key={book.id} book={book} toSend />;
+        {booksInCart.map((book, index) => {
+          return <BookList key={index} book={book} toSend />;
         })}
       </div>
       <Container
@@ -107,6 +127,7 @@ const Form = () => {
             label="Imię"
             variant="outlined"
             value={name}
+            helperText="Imię musi zawierać przynajmniej 4 znaki"
             onChange={onNamechange}
           />
 
@@ -116,6 +137,7 @@ const Form = () => {
             label="Nazwisko"
             variant="outlined"
             onChange={onSurnamechange}
+            helperText="Nazwisko musi zawierać przynajmniej 6 znaków"
             value={surname}
           />
 
@@ -125,6 +147,7 @@ const Form = () => {
             label="Miejscowość"
             variant="outlined"
             onChange={onCitychange}
+            helperText="Nie może być puste"
             value={city}
           />
 
